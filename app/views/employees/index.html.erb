@@ -1,0 +1,43 @@
+<%= render 'shared/headers' %>
+<%= flash[:notice]  %>
+<table>
+<thead>
+<tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Full Name</th>
+    <th>Email</th>
+    <th>Password</th>
+    <th>Confirm Password</th>
+    <th>Country</th>
+    <th>Action</th>
+   
+
+
+</tr>
+</thead>
+<tbody>
+     <% @employees.each do |employee| %>
+   
+<tr>
+    <td><%= employee.first_name %></td>
+    <td><%= employee.last_name %></td>
+    <%# here we create a func in employee model named as fullname and call it here%>
+    <td><%= employee.fullname %></td>
+    <td><%= employee.email %></td>
+    <td><%= employee.password %></td>
+    <td><%= employee.confirm_password%></td>
+    <td><%= employee.country%></td>
+    <td><%= link_to "Edit", edit_employee_path(employee) %></td>
+    <td><%= link_to "View", employee_path(employee) %></td>
+    <td><%= link_to "Delete", employee_path(employee), method: :delete, data: { confirm: 'Are you sure to delete this employee?' }  %></td>
+ 
+
+    <% end %>
+</tr>
+</tbody>
+
+    </table>
+
+
+<%= link_to 'create new employee' , new_employee_path , class:'btn btn-primary btn-lg' %>
